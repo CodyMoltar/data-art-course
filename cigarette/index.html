@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insight</title>
+
+    <style>
+
+        #container{
+            width:100%;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #question-container{
+            height:90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        #result-container{
+            display:none;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        #result-container{
+            width:100%;
+            max-width: 500px;
+            
+        }
+
+        #result-container > p{
+            width:100%;
+            display:block;
+        }
+
+        #result-container > img{
+            width:50px;
+            height:auto;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form > *{
+            margin:0.5em 0em;
+        }
+
+        input{
+            width:50%;
+        }
+
+        label{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div id="container">
+
+        <div id="question-container">
+            <form>
+                <label for="question">How many pizzas do you eat per month?</label>
+                <input type="number" name="question" id="number-of-pizzas">
+                <input type="button" value="Submit" onclick="calculate()">
+            </form>
+        </div>
+    
+        <div id="result-container">
+            
+        </div>
+
+    </div>
+
+    <script>
+
+        const resultContainer = document.getElementById("result-container");
+        const questionContainer = document.getElementById("question-container");
+
+        function calculate(){
+
+            let numberOfPizzas = document.getElementById("number-of-pizzas").value;
+            let totalNumberOfPizzas = numberOfPizzas * 12 * 50;
+
+            questionContainer.style.display = 'none';
+            resultContainer.style.display = 'flex';
+
+            intro = document.createElement('p');
+            intro.innerHTML = 'If you eat ' + numberOfPizzas + ' pizzas per month, for 50 years, these would be the number of pizzas you will have eaten up to now.'
+            resultContainer.appendChild(intro);
+
+            for(let i = 0; i < totalNumberOfPizzas; i++){
+                pizzaImage = document.createElement('img');
+                pizzaImage.src = 'media/pizza-small.png';
+                rotation = Math.floor(Math.random()*360);
+                console.log(rotation)
+                pizzaImage.style.transform = "rotate(" + rotation + "deg)";
+                resultContainer.appendChild(pizzaImage);
+            }
+
+            
+
+        }
+
+    </script>
+    
+</body>
+</html>
